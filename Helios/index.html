@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helios AI Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { /* Default Theme (Always Black Background) */
+      --palette-soft-pink: #FFDCDC;
+      --palette-peachy-cream: #FFF2EB;
+      --palette-light-peach: #FFE8CD;
+      --palette-warm-coral: #FFD6BA;
+      --text-on-palette-light: #000000; /* Pure Black text for light palette backgrounds */
+
+      --bg-primary: #000000; /* Always Black */
+      --bg-secondary: var(--palette-soft-pink); /* Cards, headers on black */
+      --bg-tertiary: var(--palette-light-peach); /* Inputs on black */
+      --bg-surface: var(--palette-soft-pink); /* General surface on black */
+
+      --text-primary: var(--palette-peachy-cream); /* Main text for readability on black/dark surfaces */
+      --text-secondary: var(--palette-warm-coral); /* Secondary text, links (on black) */
+      --text-placeholder: #000000; /* Placeholder text (on input bg) - NOW BLACK */
+
+      --message-user-bg: var(--palette-light-peach);
+      --message-user-text: var(--text-on-palette-light); 
+      --message-ai-bg: var(--palette-soft-pink);
+      --message-ai-text: var(--text-on-palette-light); 
+
+      --action-primary-bg: var(--palette-warm-coral);
+      --action-primary-text: var(--text-on-palette-light); /* Dark text on warm coral button for better contrast */
+      
+      --system-message-text: var(--text-on-palette-light);
+      --system-message-bg: var(--palette-light-peach); 
+      
+      --border-primary: var(--palette-warm-coral);
+      --border-secondary: var(--palette-light-peach);
+      --outline-primary: #000000; /* Added black outline */
+
+      --scrollbar-thumb: var(--palette-warm-coral);
+      --scrollbar-track: var(--palette-light-peach);
+      --selection-bg: var(--palette-warm-coral);
+      --selection-text: var(--palette-peachy-cream);
+
+      --code-block-bg: #1A1A1A; 
+      --code-block-header-bg: var(--palette-light-peach);
+      --code-block-header-text: var(--text-on-palette-light);
+      --code-block-copy-btn-bg: var(--palette-warm-coral);
+      --code-block-copy-btn-text: var(--text-on-palette-light);
+      --code-block-copy-btn-hover-bg: var(--palette-light-peach);
+      --code-block-line-number-text: var(--palette-light-peach);
+
+      --link-text: var(--palette-warm-coral); /* Links on black BG */
+      --typing-indicator-dot: var(--palette-peachy-cream);
+      
+      --landing-title-text: var(--palette-peachy-cream);
+      --landing-subtitle-text: var(--palette-warm-coral);
+      --landing-description-text: var(--palette-light-peach);
+      
+      --navbar-menu-bg: var(--palette-soft-pink);
+      --navbar-menu-border: var(--palette-warm-coral);
+      --navbar-menu-text: var(--text-on-palette-light);
+      --navbar-menu-hover-bg: var(--palette-light-peach);
+      
+      --settings-icon-color: var(--palette-peachy-cream); 
+      --settings-card-bg: var(--palette-soft-pink);
+      --settings-card-text: var(--text-on-palette-light); /* Text within cards */
+      --settings-list-item-text: var(--text-on-palette-light); /* For list items or general text in cards */
+
+      --palette-icon-tint: var(--palette-peachy-cream); 
+      --focus-ring-color: var(--palette-warm-coral);
+    }
+
+    html.theme-light { /* Alternative Theme (Always Black Background, different palette arrangement) */
+      --bg-primary: #000000; /* Still Black */
+      --bg-secondary: var(--palette-light-peach); /* Cards, headers on black - swapped */
+      --bg-tertiary: var(--palette-soft-pink); /* Inputs on black - swapped */
+      --bg-surface: var(--palette-light-peach);
+
+      --text-primary: var(--palette-peachy-cream);
+      --text-secondary: var(--palette-warm-coral);
+      --text-placeholder: #000000; /* Placeholder text (on input bg) - NOW BLACK */
+
+      --message-user-bg: var(--palette-soft-pink); /* Swapped */
+      --message-user-text: var(--text-on-palette-light);
+      --message-ai-bg: var(--palette-light-peach); /* Swapped */
+      --message-ai-text: var(--text-on-palette-light);
+
+      --action-primary-bg: var(--palette-warm-coral);
+      --action-primary-text: var(--text-on-palette-light); 
+      
+      --system-message-text: var(--text-on-palette-light);
+      --system-message-bg: var(--palette-soft-pink);
+
+      --border-primary: var(--palette-warm-coral);
+      --border-secondary: var(--palette-soft-pink);
+      --outline-primary: #000000; /* Added black outline */
+
+      --scrollbar-thumb: var(--palette-warm-coral);
+      --scrollbar-track: var(--palette-soft-pink);
+      --selection-bg: var(--palette-warm-coral);
+      --selection-text: var(--palette-peachy-cream);
+
+      --code-block-bg: #1A1A1A;
+      --code-block-header-bg: var(--palette-soft-pink);
+      --code-block-header-text: var(--text-on-palette-light);
+      --code-block-copy-btn-bg: var(--palette-warm-coral);
+      --code-block-copy-btn-text: var(--text-on-palette-light);
+      --code-block-copy-btn-hover-bg: var(--palette-light-peach);
+      --code-block-line-number-text: var(--palette-soft-pink);
+
+      --link-text: var(--palette-warm-coral);
+      --typing-indicator-dot: var(--palette-peachy-cream);
+      
+      --landing-title-text: var(--palette-peachy-cream);
+      --landing-subtitle-text: var(--palette-warm-coral);
+      --landing-description-text: var(--palette-light-peach);
+
+      --navbar-menu-bg: var(--palette-light-peach);
+      --navbar-menu-border: var(--palette-warm-coral);
+      --navbar-menu-text: var(--text-on-palette-light);
+      --navbar-menu-hover-bg: var(--palette-soft-pink);
+      
+      --settings-icon-color: var(--palette-peachy-cream);
+      --settings-card-bg: var(--palette-light-peach);
+      --settings-card-text: var(--text-on-palette-light);
+      --settings-list-item-text: var(--text-on-palette-light);
+
+      --palette-icon-tint: var(--palette-peachy-cream);
+      --focus-ring-color: var(--palette-warm-coral);
+    }
+
+    body, input, textarea, button, select {
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+    }
+    body {
+      background-color: #000000 !important; /* Ensure always black */
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease; 
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb); filter: brightness(1.2); 
+    }
+    /* For Firefox */
+    * {
+      scrollbar-width: auto;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    /* Custom text selection color */
+    ::selection {
+      background-color: var(--selection-bg);
+      color: var(--selection-text);
+    }
+    ::-moz-selection { /* Code for Firefox */
+      background-color: var(--selection-bg);
+      color: var(--selection-text);
+    }
+
+    html, body, #root {
+      height: 100%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); } 
+    }
+    .animate-pulse-subtle {
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    /* Styling for icons8 images - color will be set in URL */
+    img.icon-img {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@19.1.0/",
+    "react": "https://esm.sh/react@19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai?bundle",
+    "react-markdown": "https://esm.sh/react-markdown@9?bundle",
+    "remark-gfm": "https://esm.sh/remark-gfm@4?bundle",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@15.5.0?bundle",
+    "react-syntax-highlighter/dist/esm/styles/prism": "https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism?bundle",
+    "react-syntax-highlighter/dist/esm/styles/prism/": "https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism/",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@^15.6.1/",
+    "pdfjs-dist": "https://esm.sh/pdfjs-dist@4.4.170?bundle",
+    "pdfjs-dist/build/pdf.worker.min.js": "https://esm.sh/pdfjs-dist@4.4.170/build/pdf.worker.min.js",
+    "mammoth.js": "https://esm.sh/mammoth@1.8.0?bundle"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root" class="h-full"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

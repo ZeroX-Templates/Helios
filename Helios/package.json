@@ -1,0 +1,28 @@
+{
+  "name": "helios-ai-chatbot",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "@google/genai": "latest",
+    "react-markdown": "9?bundle",
+    "remark-gfm": "4?bundle",
+    "react-syntax-highlighter": "^15.6.1",
+    "react-syntax-highlighter/dist/esm/styles/prism": "latest",
+    "pdfjs-dist": "4.4.170?bundle",
+    "pdfjs-dist/build/pdf.worker.min.js": "latest",
+    "mammoth.js": "1.8.0?bundle"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
+}

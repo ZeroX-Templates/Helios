@@ -1,0 +1,6 @@
+{
+  "name": "Helios AI Chatbot",
+  "description": "A stylish, AI-powered chatbot web app using Gemini API, designed for Replit. Features live chat with streamed responses, markdown rendering, and a modern UI.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
